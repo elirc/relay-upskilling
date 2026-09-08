@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "project_id": "relay-platform-001",
+  "audience": "Self-described novice/junior SWE",
+  "placement": "foundations_assumed_until_diagnostic",
+  "entry_material": "relay-start",
+  "progress_path": "upskilling/learner-progress.json",
+  "stages": [
+    {
+      "id": "foundations",
+      "title": "Foundations",
+      "goal": "Write a function, debug a failure, trace a request and query, and explain a small UI change.",
+      "prerequisites": [],
+      "materials": [
+        "relay-start",
+        "relay-foundations"
+      ],
+      "gate": "Seven foundations exit tasks, with learner code and a changed case."
+    },
+    {
+      "id": "guided",
+      "title": "Guided changes",
+      "goal": "Make small tested changes and respond to review feedback.",
+      "prerequisites": [
+        "foundations"
+      ],
+      "materials": [
+        "relay-lab-01",
+        "relay-lab-03",
+        "relay-lab-02",
+        "relay-lab-12"
+      ],
+      "gate": "Two small reviewed changes, own tests, failure traces and explanations."
+    },
+    {
+      "id": "independent",
+      "title": "Independent feature ownership",
+      "goal": "Clarify, implement, test and support a bounded feature yourself.",
+      "prerequisites": [
+        "guided"
+      ],
+      "materials": [
+        "relay-assessment",
+        "relay-lab-05",
+        "relay-lab-06"
+      ],
+      "gate": "Two different feature cycles; rubric 2 across relevant dimensions and one transfer task at 3."
+    },
+    {
+      "id": "reliability",
+      "title": "Reliability and operations",
+      "goal": "Explain failure boundaries, measure changes and recover safely.",
+      "prerequisites": [
+        "independent"
+      ],
+      "materials": [
+        "relay-lab-11",
+        "relay-lab-04",
+        "relay-lab-09"
+      ],
+      "gate": "Small crash demonstration, complete accounting, measured change and recovery note."
+    },
+    {
+      "id": "judgment",
+      "title": "Senior judgment practice",
+      "goal": "Handle ambiguity, justify tradeoffs and improve work through real collaboration.",
+      "prerequisites": [
+        "reliability"
+      ],
+      "materials": [
+        "relay-lab-10"
+      ],
+      "gate": "Repeated shared-project decisions, feedback, human review and observed handover; no automatic job title."
+    }
+  ],
+  "electives": [
+    {
+      "material_id": "relay-lab-07",
+      "after_stage": "reliability"
+    },
+    {
+      "material_id": "relay-lab-08",
+      "after_stage": "reliability"
+    }
+  ],
+  "assessment_policy": "Curriculum checks and platform evidence never mark learner gates complete."
+}

@@ -1,0 +1,14 @@
+{
+  "result": "passed",
+  "checkedAt": "2026-09-08T04:25:22.586Z",
+  "checks": [
+    "Node-only beginner entry",
+    "Five capability stages",
+    "Keyboard stage details",
+    "Legacy reflection indices retained",
+    "Reflection change survives reload",
+    "375px viewport without horizontal overflow",
+    "No browser page errors"
+  ],
+  "learnerAssessed": false
+}

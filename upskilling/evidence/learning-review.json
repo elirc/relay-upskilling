@@ -1,0 +1,22 @@
+{
+  "checked_at": "2026-09-08T04:26:10.897Z",
+  "scope": "Learning curriculum only",
+  "relative_document_links": 40,
+  "original_learner_entries_preserved": 12,
+  "starter_exercises_left_for_learner": true,
+  "reference_cases_passed": 13,
+  "incorrect_implementations_detected": 7,
+  "learner_assessed": false,
+  "teaching_effectiveness": "Not yet observed",
+  "typecheck": "passed",
+  "production_build": "passed",
+  "browser": "passed",
+  "browser_evidence": "upskilling/evidence/learning-browser.json",
+  "result": "passed",
+  "production_url": "http://127.0.0.1:4318",
+  "build_id": "07s1jUXBoTDdbbolcbjkO",
+  "notes": [
+    "Initial build hit a locked standalone directory; stopped the running demo, rebuilt successfully and restarted it.",
+    "Curriculum effectiveness and learner mastery remain unassessed."
+  ]
+}

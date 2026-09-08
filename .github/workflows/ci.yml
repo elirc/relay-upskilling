@@ -1,0 +1,51 @@
+name: Relay verification
+on: [push, pull_request]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_USER: relay
+          POSTGRES_PASSWORD: relay_local
+          POSTGRES_DB: relay
+        ports: ["54329:5432"]
+        options: >-
+          --health-cmd "pg_isready -U relay"
+          --health-interval 3s --health-timeout 3s --health-retries 20
+    env:
+      DATABASE_URL: postgresql://relay:relay_local@127.0.0.1:54329/relay
+      ConnectionStrings__Relay: Host=127.0.0.1;Port=54329;Database=relay;Username=relay;Password=relay_local
+      Relay__UploadDir: .data/uploads
+      UPLOAD_DIR: .data/uploads
+      RELAY_DEMO_MODE: "true"
+      DEMO_PASSWORD: relay-local-only
+      RELAY_LARGE_TEST: "true"
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 24, cache: npm}
+      - uses: actions/setup-dotnet@v4
+        with: {dotnet-version: "10.0.x"}
+      - run: npm ci
+      - run: npm run typecheck && npm test && npm run check:knowledge
+      - run: dotnet test worker.tests/Relay.Worker.Tests.csproj
+      - run: npm run db:migrate && npm run seed
+      - run: npm run build
+      - run: |
+          npm start > /tmp/relay-web.log 2>&1 &
+          npm run ai > /tmp/relay-ai.log 2>&1 &
+          npm run connector > /tmp/relay-connector.log 2>&1 &
+          for i in $(seq 1 60); do curl -fsS http://127.0.0.1:4317 > /dev/null && break; sleep 1; done
+          npm run test:e2e
+          npm run test:advanced
+          npm run test:ai
+      - run: npx playwright install --with-deps chromium
+        env: {PLAYWRIGHT_BROWSERS_PATH: .cache/playwright}
+      - run: npm run test:browser
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: relay-verification, path: test-results/}

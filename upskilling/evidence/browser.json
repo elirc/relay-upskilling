@@ -1,0 +1,15 @@
+{
+  "result": "passed",
+  "full": true,
+  "errors": [],
+  "checkedAt": "2026-09-08T02:25:22.845Z",
+  "checks": [
+    "Login and keyboard dialog dismissal",
+    "Schema v2 selection",
+    "AI proposal review and draft application",
+    "Correction, approval, completion and report",
+    "Operations and team navigation",
+    "Learning reflection persistence",
+    "Mobile document overflow"
+  ]
+}

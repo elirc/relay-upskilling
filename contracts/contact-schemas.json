@@ -1,0 +1,88 @@
+{
+  "schemas": [
+    {
+      "version": 1,
+      "name": "Contacts",
+      "fields": [
+        {
+          "key": "name",
+          "label": "Full name",
+          "type": "text",
+          "required": true,
+          "maxLength": 200,
+          "description": "A contact's first and last name"
+        },
+        {
+          "key": "email",
+          "label": "Email address",
+          "type": "email",
+          "required": true,
+          "maxLength": 254,
+          "description": "Unique identity within your workspace"
+        },
+        {
+          "key": "company",
+          "label": "Company",
+          "type": "text",
+          "required": false,
+          "maxLength": 300,
+          "description": "The organization this contact belongs to"
+        },
+        {
+          "key": "joined_at",
+          "label": "Signup date",
+          "type": "date",
+          "required": false,
+          "maxLength": 10,
+          "description": "YYYY-MM-DD or YYYY/MM/DD; ambiguous dates need review"
+        }
+      ]
+    },
+    {
+      "version": 2,
+      "name": "Contacts",
+      "fields": [
+        {
+          "key": "name",
+          "label": "Full name",
+          "type": "text",
+          "required": true,
+          "maxLength": 200,
+          "description": "A contact's first and last name"
+        },
+        {
+          "key": "email",
+          "label": "Email address",
+          "type": "email",
+          "required": true,
+          "maxLength": 254,
+          "description": "Unique identity within your workspace"
+        },
+        {
+          "key": "company",
+          "label": "Company",
+          "type": "text",
+          "required": false,
+          "maxLength": 300,
+          "description": "The organization this contact belongs to"
+        },
+        {
+          "key": "joined_at",
+          "label": "Signup date",
+          "type": "date",
+          "required": false,
+          "maxLength": 10,
+          "description": "YYYY-MM-DD or YYYY/MM/DD; ambiguous dates need review"
+        },
+        {
+          "key": "phone",
+          "label": "Phone number",
+          "type": "phone",
+          "required": false,
+          "maxLength": 16,
+          "description": "International phone number with country code, e.g. +14155550123"
+        }
+      ]
+    }
+  ]
+}

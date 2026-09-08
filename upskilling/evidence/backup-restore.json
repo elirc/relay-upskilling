@@ -1,0 +1,19 @@
+{
+  "format": 1,
+  "createdAt": "2026-09-08T01:58:11.622Z",
+  "databaseArchive": "relay.dump",
+  "archiveHash": "acf426779f124dff3a9139c1e065a10b6c9f1ef6445f2917d1d91f63ecf9a9b4",
+  "originals": 56,
+  "counts": {
+    "jobs": 56,
+    "import_rows": 427059,
+    "contacts": 196153,
+    "delivery_outbox": 36,
+    "test_destination_receipts": 36,
+    "users": 5,
+    "memberships": 5,
+    "job_events": 339
+  },
+  "verifiedRestore": true,
+  "backupLocation": "ignored .data/backups directory"
+}

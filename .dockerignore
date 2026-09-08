@@ -1,0 +1,16 @@
+node_modules
+.next
+.cache
+.tools
+.data
+.env
+test-results
+**/bin
+**/obj
+.git
+
+.env.production
+.env.local
+.env.*.local
+
+.env*

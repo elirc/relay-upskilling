@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "project_id": "relay-platform-001",
+  "name": "Relay",
+  "scope": "Relay and associated upskilling material only",
+  "stack": {
+    "application": "Next.js 16 / TypeScript / React 19",
+    "database": "PostgreSQL",
+    "worker": ".NET 10 / C#",
+    "ai": "Pinned local MiniLM embeddings via Transformers.js; no hosted LLM"
+  },
+  "primary_goal": "Upskill the learner from novice/junior toward independent feature ownership and later senior judgment",
+  "implemented": [
+    "Streaming CSV/XLSX upload, SHA-256 original fingerprint and separate immutable file storage",
+    "C# bounded parsing, normalization, validation and durable batch execution",
+    "Organization membership, operator/reviewer roles, invitations and credential lifecycle",
+    "Immutable shared schema v1/v2 fingerprints and reviewed bounded transformations",
+    "Real local embedding mapping proposals with structured validation and conservative abstention",
+    "Labeled calibration/regression/held-out AI evaluation and recorded baseline failure",
+    "Corrections, stale-version protection and file/mapping/contract/destination-bound approval",
+    "Atomic local effects, row ledger and checkpoint with before/after commit crash recovery",
+    "Insert-only local and remote reconciliation preserving subsequent destination edits",
+    "External durable outbox, idempotency receipts, Retry-After and uncertain-outcome recovery",
+    "Pause/cancel/retry and receipt-only reconciliation for inactive external jobs",
+    "Fair per-tenant batch scheduling and worker schema-capability filtering",
+    "Worker health, phase metrics, RSS, batch traces and external trace-context propagation",
+    "Paginated review interface, keyboard dialogs, mobile layout and streamed row reports",
+    "Single-use invitations, password change/session revocation and administrative reset/bootstrap",
+    "Real PostgreSQL snapshot backup, immutable-original verification and isolated restore rehearsal",
+    "Foundations-first curriculum with runnable starters, five learning gates, 12 later Relay labs, coaching contract and machine-readable learner state"
+  ],
+  "planned_only": [
+    "Public deployment on a user-provided hosting target",
+    "Hosted CI verification after the initial GitHub push",
+    "Independent reviewer assessment",
+    "Observed human handover and learner assessment"
+  ],
+  "invariants": [
+    {
+      "id": "atomic-checkpoint",
+      "claim": "Local destination effects, row outcomes and checkpoint commit together; crash before commit rolls back, crash after commit resumes past the durable prefix",
+      "evidence": [
+        "worker/ImportWorker.cs",
+        "db/001_init.sql",
+        "scripts/e2e.mjs",
+        "scripts/advanced-e2e.mjs"
+      ]
+    },
+    {
+      "id": "tenant-isolation",
+      "claim": "Membership scopes jobs/rows/reports/proposals; reviewer gates approval, diagnostics, retry and invitations",
+      "evidence": [
+        "src/lib/auth.ts",
+        "src/lib/platform-api.ts",
+        "src/app/api/[...path]/route.ts",
+        "scripts/advanced-e2e.mjs"
+      ]
+    },
+    {
+      "id": "review-binding",
+      "claim": "New approval format binds file hash, mapping/correction/transform version, immutable schema fingerprint and destination; legacy approval remains supported",
+      "evidence": [
+        "contracts/contact-schemas.json",
+        "scripts/migrate.mjs",
+        "src/app/api/[...path]/route.ts",
+        "worker/SchemaRegistry.cs",
+        "worker/ImportWorker.cs"
+      ]
+    },
+    {
+      "id": "external-uncertainty",
+      "claim": "Durable outbox precedes network writes; stable receipt keys reconcile response loss without repeating effects under the test API contract",
+      "evidence": [
+        "worker/ExternalDelivery.cs",
+        "scripts/test-destination.mjs",
+        "scripts/advanced-e2e.mjs"
+      ]
+    },
+    {
+      "id": "preserve-edits",
+      "claim": "Imports insert missing identities and classify conflicting data; existing contacts are never overwritten",
+      "evidence": [
+        "worker/ImportWorker.cs",
+        "scripts/test-destination.mjs",
+        "scripts/advanced-e2e.mjs"
+      ]
+    },
+    {
+      "id": "human-approved-ai",
+      "claim": "Pinned local model sees headers only and returns an unapplied proposal; mapping validation and reviewer approval remain explicit",
+      "evidence": [
+        "services/mapping-engine.mjs",
+        "scripts/evaluate-mapping.mjs",
+        "src/components/import-detail.tsx",
+        "src/app/api/[...path]/route.ts"
+      ]
+    }
+  ],
+  "verification": {
+    "record": "upskilling/evidence/verification.md",
+    "machine_results": "upskilling/evidence/acceptance.json",
+    "advanced_results": "upskilling/evidence/advanced.json",
+    "status": "verified_local_platform",
+    "passed": [
+      "100k real after-commit crash with two-worker recovery",
+      "Real before-commit rollback/restart",
+      "Advanced Excel/schema/fairness/remote/account acceptance",
+      "17 C# tests",
+      "2 TypeScript tests",
+      "Actual model evaluation",
+      "Complete Chromium workflow with AI proposals and operational views",
+      "Real pg_dump/pg_restore and original hash verification",
+      "Final standalone production artifact and complete Chromium workflow",
+      "Fresh migrations and non-demo administrator bootstrap",
+      "Knowledge catalog/graph/learner references"
+    ],
+    "pending": [],
+    "final_checks": "upskilling/evidence/final-checks.json"
+  },
+  "learning": {
+    "completion": "Not assessed; learner attempts and independent explanations have not been observed",
+    "catalog": "upskilling/learning-material-catalog.json",
+    "next_lab": "upskilling/FIRST_SESSION.md",
+    "learning_path": "upskilling/learning-path.json",
+    "review": "upskilling/REVIEW.md",
+    "learner_evidence": "upskilling/submissions/",
+    "curriculum_verification": "upskilling/evidence/learning-review.json"
+  },
+  "handoff": "upskilling/HANDOFF.md",
+  "next_task": "upskilling/contracts/next-task.md",
+  "limitations": [
+    "Public hosting target not supplied; private GitHub repository created",
+    "Docker definitions authored; Docker unavailable locally",
+    "Independent review/human handover and learner mastery not observed",
+    "External integration is a controlled test API with strong receipts, not an arbitrary CRM",
+    "English-header AI benchmark is small; similarity is not calibrated confidence",
+    "Parser restart rescans a logical-record prefix; opening a workbook may scan the archive",
+    "Source storage is one shared durable volume, not cross-host object storage",
+    "API-enforced tenant isolation; no PostgreSQL RLS claim",
+    "Malformed input reports only its staged prefix; unstaged source records are not falsely counted",
+    "External requests already authorized for sending may complete after pause/cancel"
+  ],
+  "last_updated": "2026-09-08T13:54:47.477Z",
+  "repository": {
+    "owner": "elirc",
+    "name": "relay-upskilling",
+    "url": "https://github.com/elirc/relay-upskilling",
+    "remote": "https://github.com/elirc/relay-upskilling.git",
+    "default_branch": "main",
+    "visibility": "private",
+    "git_repository": true
+  }
+}

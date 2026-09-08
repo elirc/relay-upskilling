@@ -1,0 +1,35 @@
+{
+  "at": "2026-09-08T02:11:26.264Z",
+  "checks": [
+    "Excel streams into schema v2 with explicitly reviewed cleanup and fingerprint-bound approval",
+    "Schema v1 remains executable and exports its original field contract",
+    "Actual AI proposals are structured, tenant-scoped and do not mutate or approve mappings",
+    "Small tenant progresses before another tenant finishes a large parse",
+    "A schema-v1 worker skips unsupported v2 jobs without blocking compatible jobs",
+    "Real pre-commit crash rolls back effects and resumes without lost or repeated rows",
+    "External delivery honors 429 Retry-After and completes using stable receipts",
+    "Destination commits and loses response; real worker exits, restarts and reconciles all receipts without duplication",
+    "Remote keys reject changed payloads, receipts isolate tenants, and repeated imports preserve subsequent destination edits",
+    "Cancellation after an uncertain commit reconciles receipts without resuming the import",
+    "Malformed Excel exhausts bounded retries, exposes a safe error and supports reviewer-controlled retry",
+    "Operational metrics enforce reviewer/tenant boundaries and propagate trace context to the destination",
+    "Existing-account invitations require the current password and cannot reset credentials",
+    "Reviewer invitations are single-use and scoped; password change and recovery revoke sessions"
+  ],
+  "jobs": [
+    "3f4f49b1-4a2d-4a7d-9876-893892628b8d",
+    "f8710826-4dbe-4714-ae3b-b2c3979f971d",
+    "c485c514-93a9-4a8b-a7ff-72c9170908fc",
+    "f273599a-a8cc-4a41-88b9-065d9b7ed593",
+    "a464d9df-29f6-4b78-b99d-2ae6f9b3abb7",
+    "999299a3-e87d-4da1-b123-04fa9fb5dab1",
+    "3867d2bb-b25e-43c8-bde8-d63f3927a8b5",
+    "d9b6e025-8c45-4d1d-9304-4781276ee3af",
+    "5347e669-dab2-4d08-9da6-1320e5900315",
+    "56e8cb60-da95-4601-b3fa-9dfd8ddc6122",
+    "7eb899a4-60e3-43a5-bc3d-31b6c7132721",
+    "76d920a0-7b20-4ed1-8275-c5f7ffc29f7f",
+    "adfe0328-56d6-4b5b-a2cd-98e34ff7e015"
+  ],
+  "result": "passed"
+}

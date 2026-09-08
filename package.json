@@ -1,0 +1,48 @@
+{
+  "name": "relay",
+  "version": "0.2.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1 --port 4317",
+    "build": "next build",
+    "start": "next start --hostname 0.0.0.0 --port 4317",
+    "typecheck": "next typegen && tsc --noEmit",
+    "db:migrate": "node --env-file-if-exists=.env scripts/migrate.mjs",
+    "db:local": "node scripts/local-db.mjs",
+    "seed": "node --env-file-if-exists=.env scripts/seed.mjs",
+    "fixture": "node scripts/fixture.mjs",
+    "test": "node --env-file-if-exists=.env --experimental-strip-types --test tests/*.test.ts",
+    "test:e2e": "node --env-file-if-exists=.env scripts/e2e.mjs",
+    "test:browser": "node --env-file-if-exists=.env scripts/browser-test.mjs",
+    "worker": "node --env-file-if-exists=.env scripts/worker.mjs",
+    "postbuild": "node scripts/package-artifact.mjs",
+    "check:knowledge": "node scripts/check-knowledge.mjs",
+    "ai": "node --env-file-if-exists=.env scripts/ai-service.mjs",
+    "connector": "node --env-file-if-exists=.env scripts/test-destination.mjs",
+    "test:advanced": "node --env-file-if-exists=.env scripts/advanced-e2e.mjs",
+    "test:ai": "node scripts/evaluate-mapping.mjs",
+    "backup": "node --env-file-if-exists=.env scripts/backup.mjs",
+    "test:restore": "node --env-file-if-exists=.env scripts/backup.mjs --verify",
+    "ops:prune": "node --env-file-if-exists=.env scripts/prune.mjs"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "3.8.1",
+    "lucide-react": "^0.577.0",
+    "next": "16.3.4",
+    "pg": "^8.16.3",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^24.0.0",
+    "@types/pg": "^8.16.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "embedded-postgres": "18.4.0-beta.17",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "type": "module"
+}

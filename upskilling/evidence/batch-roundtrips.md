@@ -1,0 +1,13 @@
+# Experiment — Replace per-row database round trips
+Date: 2026-09-06 (local). Environment: Windows, PostgreSQL 18.4, .NET 10.0.400.
+
+Observed problem: the initial worker normalized in C# but issued multiple SQL requests for every row. During the large acceptance run, the job had parsed all 100,000 rows and reached validation checkpoint 17,500 at 154 seconds after upload. At 248 seconds it had reached checkpoint 43,500. The test subsequently exceeded its 180-second validation wait. This was a throughput failure, not an observed accounting failure.
+
+Prediction before the change: send a bounded normalized batch to PostgreSQL, then classify duplicates/existing records with set-based SQL. This should reduce validation round trips from roughly three per valid row to a few per batch without changing outcomes. Apply the same approach to commit while preserving the destination/ledger/checkpoint transaction.
+
+Change: C# still parses and normalizes. Validation sends at most BatchSize normalized results as JSON, classifies duplicate identities and destination conflicts in SQL, and checkpoints in the same transaction. Commit inserts candidates, locks relevant existing contacts, reconciles outcomes and advances the checkpoint atomically. Memory remains bounded by batch size.
+
+Acceptance: rerun all role, isolation, correction, stale approval, reconciliation and pause/cancel checks, then the 100k process-crash rehearsal. Do not treat better throughput as sufficient evidence of correctness.
+
+Conclusion: the final acceptance suite passed all 11 checks, including exact 100,000-row accounting after a real process exit at 50,000 and restart with two workers. The full suite ran from 2026-09-07T00:11:15.363Z to 2026-09-07T00:13:21.725Z. See acceptance.json for phase event timestamps. No isolated speedup ratio is claimed. This observation is not a controlled performance benchmark: other retained test jobs and browser polling share the database. A future lab should measure isolated throughput and peak RSS across fixed batch sizes.
+Intermediate result: the first optimization candidate failed the destination-edit acceptance test. It classified a contact as imported by matching provenance metadata, even though the test had created an existing contact with that provenance before execution. Corrected the implementation to mark imported rows only from INSERT ... RETURNING, then reconcile the remaining rows. This is why performance changes must retain behavioral acceptance tests.

@@ -1,0 +1,29 @@
+{
+  "startedAt": "2026-09-07T12:19:17.981Z",
+  "checks": [
+    "Anonymous requests denied",
+    "CSV normalization, duplicate classification and ambiguous-date rejection",
+    "Tenant isolation on jobs, rows, downloads; operator approval denied",
+    "Correction invalidates approval; stale review is rejected",
+    "Reconciliation preserves edits made after preview",
+    "Every row exported and spreadsheet formulas neutralized",
+    "Completed imports cannot mutate their approved mapping",
+    "Repeated imports do not duplicate destination effects",
+    "Concurrent workers respect pause, resume and terminal cancellation",
+    "Real worker process exits at committed checkpoint 50,000",
+    "100,000-row restart with two workers: no duplicate effects and every row accounted for"
+  ],
+  "large": true,
+  "recovery": {
+    "job": "78cbf7a5-29a5-4384-b3ae-46f893aa34a7",
+    "checkpoint": 50000,
+    "outcomes": {
+      "duplicate": 800,
+      "imported": 97600,
+      "rejected": 1600
+    },
+    "accountedRows": 100000
+  },
+  "finishedAt": "2026-09-07T12:21:20.580Z",
+  "result": "passed"
+}

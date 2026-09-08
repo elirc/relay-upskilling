@@ -1,0 +1,13 @@
+{
+  "result": "passed",
+  "at": "2026-09-08T02:09:31.895Z",
+  "checks": [
+    "Fresh database migrations",
+    "Idempotent migration rerun",
+    "Immutable contract registration",
+    "Administrative non-demo reviewer provisioning"
+  ],
+  "migrations": 2,
+  "contracts": 2,
+  "reviewers": 1
+}

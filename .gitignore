@@ -1,0 +1,24 @@
+node_modules/
+.next/
+.cache/
+.tools/
+.data/
+.env
+*.tsbuildinfo
+**/bin/
+**/obj/
+test-results/
+playwright-report/
+
+.env.production
+.env.local
+.env.*.local
+
+.env*
+!.env.example
+!.env.production.example
+
+# Local assistant metadata and the disposable Git learning exercise.
+/.codex/
+/.agents/
+/upskilling/submissions/git-practice/

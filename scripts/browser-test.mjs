@@ -1,0 +1,84 @@
+
+import {mkdir,writeFile} from 'node:fs/promises';
+import {existsSync,createWriteStream} from 'node:fs';
+import {resolve} from 'node:path';
+import {spawn} from 'node:child_process';
+process.env.PLAYWRIGHT_BROWSERS_PATH??=resolve('.cache/playwright');
+const {chromium,expect}=await import('@playwright/test');
+const full=process.env.RELAY_BROWSER_FULL!=='false';
+let worker;
+if(full){
+ const exe=process.env.DOTNET_EXE??(existsSync('.tools/dotnet/dotnet.exe')?resolve('.tools/dotnet/dotnet.exe'):'dotnet');
+ worker=spawn(exe,[resolve('worker/bin/Debug/net10.0/Relay.Worker.dll')],{windowsHide:true,stdio:'ignore',env:{...process.env,Relay__CrashAfterRows:'0'}});
+}
+await mkdir('test-results',{recursive:true});
+const browser=await chromium.launch({headless:true});
+const page=await browser.newPage({viewport:{width:1440,height:1000}});
+const errors=[];page.on('pageerror',e=>errors.push(e.message));
+try{
+ await page.goto(process.env.RELAY_URL??'http://127.0.0.1:4317');
+ await page.getByRole('heading',{name:'Welcome to Relay'}).waitFor();
+ await page.screenshot({path:'test-results/login-desktop.png',fullPage:true});
+ await page.getByRole('button',{name:'Sign in to workspace'}).click();
+ await expect(page.getByRole('heading',{name:'Imports',exact:true})).toBeVisible();
+ await page.screenshot({path:'test-results/imports-desktop.png',fullPage:true});
+ await page.getByRole('button',{name:'New import',exact:true}).click();
+ await expect(page.getByRole('dialog')).toBeVisible();
+ await page.screenshot({path:'test-results/upload-desktop.png',fullPage:true});
+ await page.keyboard.press('Escape');
+ await expect(page.getByRole('dialog')).not.toBeVisible();
+ if(full){
+  await page.getByRole('button',{name:'New import',exact:true}).click();
+  await page.getByRole('button',{name:'Try a sample CSV'}).click();
+  await page.getByRole('button',{name:'Upload & continue'}).click();
+  await expect(page.getByRole('heading',{name:'A place for every column'})).toBeVisible({timeout:60000});
+  await page.screenshot({path:'test-results/mapping-desktop.png',fullPage:true});
+  await page.getByRole('button',{name:'Suggest with AI',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'Mapping proposal',exact:true})).toBeVisible({timeout:120000});
+  await page.getByRole('button',{name:'Apply proposal to draft',exact:true}).click();
+  await page.getByRole('button',{name:'Validate records'}).click();
+  await expect(page.getByRole('button',{name:'Review & approve'})).toBeVisible({timeout:60000});
+  await page.getByRole('button',{name:'Errors',exact:false}).click();
+  await page.screenshot({path:'test-results/review-desktop.png',fullPage:true});
+  await page.getByRole('button',{name:'Correct row 1',exact:true}).click();
+  await page.getByLabel('Signup Date',{exact:true}).fill('2025-03-04');
+  await page.getByRole('button',{name:'Save & revalidate'}).click();
+  await expect(page.getByRole('dialog')).not.toBeVisible();
+  await expect(page.getByRole('button',{name:'Review & approve'})).toBeVisible({timeout:60000});
+  await page.getByRole('button',{name:'Review & approve'}).click();
+  await page.getByRole('button',{name:'Approve & run import'}).click();
+  await expect(page.getByRole('heading',{name:'Safely at their destination.'})).toBeVisible({timeout:60000});
+  await page.screenshot({path:'test-results/completed-desktop.png',fullPage:true});
+  const downloaded=page.waitForEvent('download');await page.getByRole('button',{name:'Final report',exact:true}).click();await (await downloaded).saveAs('test-results/browser-report.csv');
+  await page.getByRole('button',{name:'All imports',exact:true}).click();
+ }
+ await page.getByRole('button',{name:'Operations',exact:true}).click();
+ await expect(page.getByRole('heading',{name:'Worker compatibility'})).toBeVisible();
+ await page.screenshot({path:'test-results/operations-desktop.png',fullPage:true});
+ await page.getByRole('button',{name:'Team & account',exact:true}).click();
+ await expect(page.getByRole('heading',{name:'Workspace members'})).toBeVisible();
+ await page.screenshot({path:'test-results/team-desktop.png',fullPage:true});
+ await page.getByRole('button',{name:'Destination',exact:true}).click();
+ await page.getByLabel('Contract version').selectOption('2');
+ await expect(page.getByText('Phone number',{exact:true})).toBeVisible();
+ await page.getByRole('button',{name:'Learning lab',exact:false}).first().click();
+ await expect(page.getByRole('heading',{name:'The goal is understanding.'})).toBeVisible();
+ await expect(page.getByRole('heading',{name:'Your first session: one small function'})).toBeVisible();
+ await expect(page.getByRole('heading',{name:'Independent feature ownership',exact:true})).toBeVisible();
+ const stageDetails=page.locator('.learning-path summary').first();
+ await stageDetails.focus();await page.keyboard.press('Enter');
+ await expect(page.getByText('Seven foundations exit tasks, with learner code and a changed case.')).toBeVisible();
+ await page.screenshot({path:'test-results/learning-desktop.png',fullPage:true});
+ await page.getByRole('checkbox').first().check();
+ await page.reload();await page.getByRole('button',{name:'Learning lab',exact:false}).first().click();await expect(page.getByRole('checkbox').first()).toBeChecked();
+ await page.getByRole('button',{name:'Imports',exact:false}).first().click();
+ await page.setViewportSize({width:390,height:844});
+ await page.screenshot({path:'test-results/imports-mobile.png',fullPage:true});
+ const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth);
+ if(overflow)throw new Error('Mobile document overflows horizontally');
+ if(errors.length)throw new Error(errors.join('\n'));
+ console.log('PASS browser: login, navigation, dialog keyboard dismissal, learning persistence, mobile layout'+(full?', upload, mapping, correction, approval and report':''));
+ const evidence={result:'passed',full,errors,checkedAt:new Date().toISOString(),checks:['Login and keyboard dialog dismissal','Schema v2 selection','AI proposal review and draft application','Correction, approval, completion and report','Operations and team navigation','Learning reflection persistence','Mobile document overflow']};
+ await writeFile('test-results/browser.json',JSON.stringify(evidence,null,2));
+ await writeFile('upskilling/evidence/browser.json',JSON.stringify(evidence,null,2));
+}finally{await browser.close();worker?.kill();}

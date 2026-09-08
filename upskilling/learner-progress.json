@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "project_id": "relay-platform-001",
+  "assessment": "Not assessed by build automation",
+  "scale": {
+    "0": "Not attempted",
+    "1": "Followed a walkthrough",
+    "2": "Reproduced and explained independently",
+    "3": "Predicted and solved a changed constraint"
+  },
+  "labs": [
+    {
+      "material_id": "relay-lab-01",
+      "status": "not_attempted",
+      "score": null,
+      "prediction_path": null,
+      "evidence_paths": [],
+      "explanation_path": null,
+      "reviewed_by": null
+    },
+    {
+      "material_id": "relay-lab-02",
+      "status": "not_attempted",
+      "score": null,
+      "prediction_path": null,
+      "evidence_paths": [],
+      "explanation_path": null,
+      "reviewed_by": null
+    },
+    {
+      "material_id": "relay-lab-03",
+      "status": "not_attempted",
+      "score": null,
+      "prediction_path": null,
+      "evidence_paths": [],
+      "explanation_path": null,
+      "reviewed_by": null
+    },
+    {
+      "material_id": "relay-lab-04",
+      "status": "not_attempted",
+      "score": null,
+      "prediction_path": null,
+      "evidence_paths": [],
+      "explanation_path": null,
+      "reviewed_by": null
+    },
+    {
+      "material_id": "relay-lab-05",
+      "status": "not_attempted",
+      "score": null,
+      "prediction_path": null,
+      "evidence_paths": [],
+      "explanation_path": null,
+      "reviewed_by": null
+    },
+    {
+      "material_id": "relay-lab-06",
+      "status": "not_attempted",
+      "score": null,
+      "prediction_path": null,
+      "evidence_paths": [],
+      "explanation_path": null,
+      "reviewed_by": null
+    },
+    {
+      "material_id": "relay-lab-07",
+      "status": "not_attempted",
+      "score": null,
+      "prediction_path": null,
+      "evidence_paths": [],
+      "explanation_path": null,
+      "reviewed_by": null
+    },
+    {
+      "material_id": "relay-lab-08",
+      "status": "not_attempted",
+      "score": null,
+      "prediction_path": null,
+      "evidence_paths": [],
+      "explanation_path": null,
+      "reviewed_by": null
+    },
+    {
+      "material_id": "relay-lab-09",
+      "status": "not_attempted",
+      "score": null,
+      "prediction_path": null,
+      "evidence_paths": [],
+      "explanation_path": null,
+      "reviewed_by": null
+    },
+    {
+      "material_id": "relay-lab-10",
+      "status": "not_attempted",
+      "score": null,
+      "prediction_path": null,
+      "evidence_paths": [],
+      "explanation_path": null,
+      "reviewed_by": null
+    },
+    {
+      "material_id": "relay-lab-11",
+      "status": "not_attempted",
+      "score": null,
+      "prediction_path": null,
+      "evidence_paths": [],
+      "explanation_path": null,
+      "reviewed_by": null
+    },
+    {
+      "material_id": "relay-lab-12",
+      "status": "not_attempted",
+      "score": null,
+      "prediction_path": null,
+      "evidence_paths": [],
+      "explanation_path": null,
+      "reviewed_by": null
+    },
+    {
+      "material_id": "relay-start",
+      "status": "not_attempted",
+      "score": null,
+      "prediction_path": null,
+      "evidence_paths": [],
+      "explanation_path": null,
+      "reviewed_by": null
+    },
+    {
+      "material_id": "relay-foundations",
+      "status": "not_attempted",
+      "score": null,
+      "prediction_path": null,
+      "evidence_paths": [],
+      "explanation_path": null,
+      "reviewed_by": null
+    },
+    {
+      "material_id": "relay-assessment",
+      "status": "not_attempted",
+      "score": null,
+      "prediction_path": null,
+      "evidence_paths": [],
+      "explanation_path": null,
+      "reviewed_by": null
+    }
+  ],
+  "independent_review": {
+    "status": "not_observed"
+  },
+  "human_handover": {
+    "status": "not_observed"
+  },
+  "learning_path": "upskilling/learning-path.json",
+  "placement": {
+    "status": "unassessed",
+    "assumed_stage": "foundations",
+    "basis": "User describes novice/junior ability; no diagnostic submission yet",
+    "diagnostic_evidence": null
+  },
+  "stages": [
+    {
+      "stage_id": "foundations",
+      "status": "not_assessed",
+      "evidence_paths": [],
+      "rubric_scores": {},
+      "assistance_used": [],
+      "transfer_evidence": null,
+      "later_revisit": null,
+      "reviewed_by": null
+    },
+    {
+      "stage_id": "guided",
+      "status": "not_assessed",
+      "evidence_paths": [],
+      "rubric_scores": {},
+      "assistance_used": [],
+      "transfer_evidence": null,
+      "later_revisit": null,
+      "reviewed_by": null
+    },
+    {
+      "stage_id": "independent",
+      "status": "not_assessed",
+      "evidence_paths": [],
+      "rubric_scores": {},
+      "assistance_used": [],
+      "transfer_evidence": null,
+      "later_revisit": null,
+      "reviewed_by": null
+    },
+    {
+      "stage_id": "reliability",
+      "status": "not_assessed",
+      "evidence_paths": [],
+      "rubric_scores": {},
+      "assistance_used": [],
+      "transfer_evidence": null,
+      "later_revisit": null,
+      "reviewed_by": null
+    },
+    {
+      "stage_id": "judgment",
+      "status": "not_assessed",
+      "evidence_paths": [],
+      "rubric_scores": {},
+      "assistance_used": [],
+      "transfer_evidence": null,
+      "later_revisit": null,
+      "reviewed_by": null
+    }
+  ]
+}

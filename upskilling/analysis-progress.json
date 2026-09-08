@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "scope": "Relay only; unrelated Desktop directories excluded by user instruction",
+  "directories_scanned": [
+    "src",
+    "worker",
+    "worker.tests",
+    "services",
+    "db",
+    "contracts",
+    "scripts",
+    "deploy",
+    "upskilling",
+    ".github"
+  ],
+  "projects_discovered": [
+    "relay-platform-001"
+  ],
+  "awaiting_triage": [],
+  "awaiting_deep_analysis": [],
+  "fully_analyzed": [
+    "relay-platform-001"
+  ],
+  "needing_verification": [],
+  "unresolved_ambiguity": [
+    "public hosting target",
+    "independent operator/reviewer participation"
+  ],
+  "possible_duplicate_groups": [],
+  "last_completed_batch": "Private GitHub repository created; source and upskilling material prepared for the initial commit",
+  "recommended_next_batch": "Observe the learner diagnostic and first function attempt; give one hint at a time and adjust placement",
+  "last_updated": "2026-09-08T13:54:47.498Z",
+  "repository": {
+    "owner": "elirc",
+    "name": "relay-upskilling",
+    "url": "https://github.com/elirc/relay-upskilling",
+    "remote": "https://github.com/elirc/relay-upskilling.git",
+    "default_branch": "main",
+    "visibility": "private",
+    "git_repository": true
+  }
+}

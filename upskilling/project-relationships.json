@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "scope": "Relay only",
+  "nodes": [
+    {
+      "project_id": "relay-platform-001",
+      "path": "C:\\Users\\E\\Desktop\\astr1"
+    }
+  ],
+  "relationships": [],
+  "notes": "One project is in scope. Its web/worker/services are implementation components, not invented related repositories."
+}

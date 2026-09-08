@@ -1,0 +1,41 @@
+# Run with: docker compose --env-file .env.production -f compose.yaml -f compose.production.yaml up -d --build
+services:
+  postgres:
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set a database password}
+  migrate:
+    environment:
+      DATABASE_URL: postgresql://relay:${POSTGRES_PASSWORD}@postgres:5432/relay
+  seed:
+    # Production accounts are bootstrapped explicitly; no public demo credentials.
+    command: ["node", "-e", "console.log('Demo seed disabled')"]
+    environment:
+      RELAY_DEMO_MODE: "false"
+  web:
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://relay:${POSTGRES_PASSWORD}@postgres:5432/relay
+      RELAY_DEMO_MODE: "false"
+      RELAY_AI_KEY: ${RELAY_AI_KEY:?Set an AI service key}
+  worker:
+    environment:
+      ConnectionStrings__Relay: Host=postgres;Database=relay;Username=relay;Password=${POSTGRES_PASSWORD}
+      Relay__ConnectorKey: ${RELAY_CONNECTOR_KEY:?Set a connector key}
+  ai:
+    environment:
+      RELAY_AI_KEY: ${RELAY_AI_KEY}
+  connector:
+    environment:
+      DATABASE_URL: postgresql://relay:${POSTGRES_PASSWORD}@postgres:5432/relay
+      RELAY_CONNECTOR_KEY: ${RELAY_CONNECTOR_KEY}
+  proxy:
+    image: caddy:2
+    restart: unless-stopped
+    ports: ["80:80", "443:443"]
+    environment:
+      RELAY_DOMAIN: ${RELAY_DOMAIN:?Set a domain pointing at this host}
+    volumes: ["./deploy/Caddyfile:/etc/caddy/Caddyfile:ro", "caddy_data:/data", "caddy_config:/config"]
+    depends_on: [web]
+volumes:
+  caddy_data:
+  caddy_config:

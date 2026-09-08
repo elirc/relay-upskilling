@@ -1,0 +1,40 @@
+{
+  "at": "2026-09-08T02:28:37.077Z",
+  "result": "passed",
+  "method": "Authenticated reviewer retry/validation/approval APIs; no checkpoint reset or direct destination changes",
+  "imports": [
+    {
+      "job": "c97caa13-061e-403d-94bc-979f5ad2e140",
+      "before": {
+        "status": "failed",
+        "checkpoint": 0
+      },
+      "after": {
+        "status": "completed",
+        "checkpoint": 1,
+        "outcomes": {
+          "imported": 1
+        },
+        "deliveries": {}
+      }
+    },
+    {
+      "job": "9aa6960a-0535-4d25-9cf3-bb19b84cb583",
+      "before": {
+        "status": "failed",
+        "checkpoint": 0
+      },
+      "after": {
+        "status": "completed",
+        "checkpoint": 3,
+        "outcomes": {
+          "imported": 3
+        },
+        "deliveries": {
+          "delivered": 3
+        }
+      }
+    }
+  ],
+  "remainingUncertain": 0
+}

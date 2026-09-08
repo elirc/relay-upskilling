@@ -1,0 +1,27 @@
+{
+  "result": "passed",
+  "checkedAt": "2026-09-08T02:27:18.817Z",
+  "buildId": "txfWkfKJAHAWLx2mvKQwP",
+  "productionUrl": "http://127.0.0.1:4318",
+  "checks": {
+    "productionBuild": true,
+    "standaloneArtifactIsolation": true,
+    "typescript": true,
+    "typescriptTests": 2,
+    "csharpTests": 17,
+    "coreAcceptanceGroups": 11,
+    "advancedAcceptanceGroups": 14,
+    "coreRecoveryRows": 100000,
+    "productionBrowser": "passed",
+    "bootstrap": "passed",
+    "backupRestore": true,
+    "knowledgeReferences": true
+  },
+  "externalGates": [
+    "public hosting target and domain",
+    "repository remote for hosted CI",
+    "Docker runtime execution",
+    "independent review and observed human handover"
+  ],
+  "learnerAssessment": "not assessed"
+}

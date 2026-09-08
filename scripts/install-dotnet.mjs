@@ -1,0 +1,11 @@
+import { createWriteStream, createReadStream } from 'node:fs';
+import { pipeline } from 'node:stream/promises';
+import { createHash } from 'node:crypto';
+const releases = await fetch('https://builds.dotnet.microsoft.com/dotnet/release-metadata/10.0/releases.json').then(r=>r.json());
+const file=releases.releases[0].sdk.files.find(f=>f.rid==='win-x64'&&f.name.endsWith('.zip'));
+console.log('Downloading project-local .NET SDK:',releases.releases[0].sdk.version);
+const response=await fetch(file.url); if(!response.ok) throw new Error('Download failed');
+await pipeline(response.body,createWriteStream('.tools/dotnet-sdk.zip'));
+const hash=createHash('sha512');for await(const chunk of createReadStream('.tools/dotnet-sdk.zip')) hash.update(chunk);
+if(hash.digest('hex')!==file.hash) throw new Error('SDK checksum mismatch');
+console.log('SDK checksum verified.');

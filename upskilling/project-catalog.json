@@ -1,0 +1,288 @@
+{
+  "schema_version": 1,
+  "scope": "Relay only; no Desktop inventory",
+  "projects": [
+    {
+      "project_id": "relay-platform-001",
+      "name": "Relay",
+      "path": "C:\\Users\\E\\Desktop\\astr1",
+      "classification": {
+        "tier": 4,
+        "tier_label": "Substantial full-stack learning platform",
+        "project_type": "full-stack",
+        "primary_purpose": "Upskill the learner from novice/junior toward independent feature ownership and later senior judgment",
+        "status": "mostly-complete"
+      },
+      "summary": "Multi-tenant CSV/XLSX onboarding with a Next.js review interface, PostgreSQL state and a separate .NET worker. Real tests demonstrate 100k row recovery, reviewed schema evolution, local AI proposals and remote receipt reconciliation. Deployment and human-learning completion are tracked separately.",
+      "stack": {
+        "languages": [
+          "TypeScript",
+          "JavaScript",
+          "C#",
+          "SQL"
+        ],
+        "frontend": [
+          "Next.js 16",
+          "React 19"
+        ],
+        "backend": [
+          "Next.js route handlers",
+          ".NET 10 Worker Service",
+          "private Node HTTP services"
+        ],
+        "database": [
+          "PostgreSQL 18"
+        ],
+        "cloud": [],
+        "infrastructure": [
+          "single-host Docker Compose definitions",
+          "Caddy TLS definition",
+          "durable local volumes"
+        ],
+        "testing": [
+          "Node test runner",
+          "xUnit",
+          "Playwright",
+          "real-process acceptance",
+          "model evaluation",
+          "pg_restore rehearsal"
+        ],
+        "ci_cd": [
+          "GitHub Actions definition; hosted execution not observed"
+        ],
+        "ai_llm": [
+          "Xenova/all-MiniLM-L6-v2 local embedding model; not an LLM"
+        ],
+        "mobile": [],
+        "observability": [
+          "persisted batch metrics",
+          "worker heartbeats",
+          ".NET Activity/Meter",
+          "traceparent propagation"
+        ]
+      },
+      "architecture": {
+        "style": [
+          "request API plus durable background worker"
+        ],
+        "major_components": [
+          "web",
+          "worker",
+          "PostgreSQL",
+          "original storage",
+          "AI service",
+          "test destination"
+        ],
+        "data_flow_summary": "upload → stage → map/transform → validate/correct → version-bound approval → local transaction or remote outbox/receipts → per-row report",
+        "external_integrations": [
+          "private controlled destination test API",
+          "Hugging Face model artifact download"
+        ],
+        "deployment": "Native localhost verified; standalone and Docker definitions supplied; public deployment pending target",
+        "notable_patterns": [
+          "checkpoint atomicity",
+          "tenant advisory locks",
+          "immutable schema manifests",
+          "insert-only reconciliation",
+          "transactional outbox",
+          "idempotency receipts",
+          "human-reviewed proposals"
+        ]
+      },
+      "features": {
+        "implemented": [
+          "Streaming CSV/XLSX upload, SHA-256 original fingerprint and separate immutable file storage",
+          "C# bounded parsing, normalization, validation and durable batch execution",
+          "Organization membership, operator/reviewer roles, invitations and credential lifecycle",
+          "Immutable shared schema v1/v2 fingerprints and reviewed bounded transformations",
+          "Real local embedding mapping proposals with structured validation and conservative abstention",
+          "Labeled calibration/regression/held-out AI evaluation and recorded baseline failure",
+          "Corrections, stale-version protection and file/mapping/contract/destination-bound approval",
+          "Atomic local effects, row ledger and checkpoint with before/after commit crash recovery",
+          "Insert-only local and remote reconciliation preserving subsequent destination edits",
+          "External durable outbox, idempotency receipts, Retry-After and uncertain-outcome recovery",
+          "Pause/cancel/retry and receipt-only reconciliation for inactive external jobs",
+          "Fair per-tenant batch scheduling and worker schema-capability filtering",
+          "Worker health, phase metrics, RSS, batch traces and external trace-context propagation",
+          "Paginated review interface, keyboard dialogs, mobile layout and streamed row reports",
+          "Single-use invitations, password change/session revocation and administrative reset/bootstrap",
+          "Real PostgreSQL snapshot backup, immutable-original verification and isolated restore rehearsal",
+          "Foundations-first curriculum with runnable starters, five learning gates, 12 later Relay labs, coaching contract and machine-readable learner state"
+        ],
+        "partial": [
+          "Deployment packaging and hosted CI require external execution",
+          "Handover curriculum awaits another operator"
+        ],
+        "planned_only": [
+          "Public deployment on a user-provided hosting target",
+          "Hosted CI verification after the initial GitHub push",
+          "Independent reviewer assessment",
+          "Observed human handover and learner assessment"
+        ]
+      },
+      "engineering_concepts": [
+        "streaming",
+        "backpressure",
+        "bounded memory",
+        "authorization",
+        "idempotency",
+        "uncertain outcomes",
+        "schema compatibility",
+        "AI evaluation",
+        "human approval",
+        "observability",
+        "backup restoration",
+        "fresh-session recovery"
+      ],
+      "complexity": {
+        "scale": "0–10 qualitative repository assessment, not a standardized benchmark",
+        "overall_complexity_score": 7,
+        "frontend_complexity_score": 6,
+        "backend_complexity_score": 8,
+        "infrastructure_complexity_score": 5,
+        "testing_maturity_score": 7,
+        "documentation_maturity_score": 8,
+        "learning_value_score": 9,
+        "portfolio_value_score": 8
+      },
+      "learning_material": {
+        "level": "extensive",
+        "locations": [
+          "upskilling/",
+          "src/components/learning.tsx"
+        ],
+        "types": [
+          "curriculum",
+          "exercise",
+          "runbook",
+          "architecture-guide",
+          "task-contract",
+          "experiment",
+          "machine-readable catalog"
+        ],
+        "topics": [
+          "programming foundations",
+          "debugging",
+          "testing",
+          "HTTP",
+          "SQL",
+          "React",
+          "C#",
+          "feature ownership",
+          "engineering judgment"
+        ],
+        "description": "Seven foundations sessions, runnable TypeScript exercises, five evidence-based gates, two independent feature briefs and twelve later Relay labs.",
+        "connected_to_codebase": true,
+        "completeness": "Curriculum authored; actual learner effectiveness, mastery, independent review and human handover unassessed",
+        "outdated_material": [],
+        "high_value_material": [
+          "upskilling/FIRST_SESSION.md",
+          "upskilling/FOUNDATIONS.md",
+          "upskilling/ASSESSMENT.md",
+          "upskilling/ROADMAP.md"
+        ],
+        "effectiveness": "Unmeasured; previous qualitative learning-value score is potential, not demonstrated learner progress",
+        "verification": "upskilling/evidence/learning-review.json"
+      },
+      "repository": {
+        "git_repository": true,
+        "monorepo": true,
+        "parent_project": null,
+        "subprojects": [
+          "web",
+          "worker",
+          "private-services"
+        ],
+        "likely_duplicates": [],
+        "related_projects": [],
+        "owner": "elirc",
+        "name": "relay-upskilling",
+        "url": "https://github.com/elirc/relay-upskilling",
+        "remote": "https://github.com/elirc/relay-upskilling.git",
+        "default_branch": "main",
+        "visibility": "private"
+      },
+      "assessment": {
+        "strengths": [
+          "real process-crash evidence",
+          "separate .NET responsibility",
+          "row-accounting and preservation invariants",
+          "actual neural evaluation with retained failure"
+        ],
+        "weaknesses": [
+          "Public hosting target not supplied; private GitHub repository created",
+          "Docker definitions authored; Docker unavailable locally",
+          "Independent review/human handover and learner mastery not observed",
+          "External integration is a controlled test API with strong receipts, not an arbitrary CRM",
+          "English-header AI benchmark is small; similarity is not calibrated confidence",
+          "Parser restart rescans a logical-record prefix; opening a workbook may scan the archive",
+          "Source storage is one shared durable volume, not cross-host object storage",
+          "API-enforced tenant isolation; no PostgreSQL RLS claim",
+          "Malformed input reports only its staged prefix; unstaged source records are not falsely counted",
+          "External requests already authorized for sending may complete after pause/cancel"
+        ],
+        "technical_debt": [
+          "single-host source storage",
+          "no managed auth provider",
+          "small AI benchmark",
+          "source re-scan on parser recovery"
+        ],
+        "learning_opportunities": [
+          "Write and debug small functions",
+          "Trace requests and tenant-scoped queries",
+          "Own a tested vertical slice",
+          "Practise rollback, review and operational judgment"
+        ],
+        "recommended_next_steps": [
+          "Attempt the short diagnostic and name-cleaning exercise",
+          "Review learner evidence and adjust placement",
+          "Progress through independent feature ownership before advanced electives"
+        ],
+        "recommended_action": "continue"
+      },
+      "evidence": {
+        "important_files_examined": [
+          "package.json",
+          "worker/Relay.Worker.csproj",
+          "db/001_init.sql",
+          "db/002_platform.sql",
+          "src/app/api/[...path]/route.ts",
+          "worker/ImportWorker.cs",
+          "worker/ExternalDelivery.cs",
+          "services/mapping-engine.mjs"
+        ],
+        "implementation_evidence": [
+          "upskilling/evidence/acceptance.json",
+          "upskilling/evidence/advanced.json",
+          "upskilling/evidence/browser.json",
+          "upskilling/evidence/ai-evaluation.json",
+          "upskilling/evidence/backup-restore.json",
+          "upskilling/evidence/final-checks.json",
+          "upskilling/evidence/bootstrap.json"
+        ],
+        "documentation_evidence": [
+          "upskilling/ROADMAP.md",
+          "upskilling/RUNBOOK.md",
+          "upskilling/ARCHITECTURE.md",
+          "upskilling/REVIEW.md",
+          "upskilling/FIRST_SESSION.md",
+          "upskilling/learning-path.json"
+        ],
+        "uncertainties": [
+          "Public deployment on a user-provided hosting target",
+          "Hosted CI verification after the initial GitHub push",
+          "Independent reviewer assessment",
+          "Observed human handover and learner assessment"
+        ],
+        "documentation_implementation_gap": "Implementation is supported by local acceptance. Public deployment, hosted CI, independent review and learner mastery remain unobserved despite supplied plans/definitions."
+      },
+      "analysis": {
+        "analysis_status": "verified",
+        "last_analyzed": "2026-09-08T02:27:18.817Z",
+        "confidence": 92,
+        "last_learning_review": "2026-09-08T04:18:25.073Z",
+        "last_repository_update": "2026-09-08T13:54:47.491Z"
+      }
+    }
+  ]
+}

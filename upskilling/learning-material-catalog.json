@@ -1,0 +1,430 @@
+{
+  "schema_version": 1,
+  "project_id": "relay-platform-001",
+  "materials": [
+    {
+      "material_id": "relay-curriculum",
+      "path": "upskilling/ROADMAP.md",
+      "type": "curriculum",
+      "topics": [
+        "foundations",
+        "feature ownership",
+        "reliability",
+        "engineering judgment"
+      ],
+      "status": "authored-not-completed",
+      "project_id": "relay-platform-001",
+      "title": "From guided practice to engineering ownership",
+      "connection_to_code": "Source links and evidence references within the material",
+      "prerequisites": []
+    },
+    {
+      "material_id": "relay-lab-01",
+      "path": "upskilling/labs/01-record-journey.md",
+      "type": "exercise",
+      "difficulty": "intermediate",
+      "prerequisites": [
+        "relay-foundations"
+      ],
+      "assessment": "Prediction, observed evidence, independent explanation",
+      "completion": "not_assessed",
+      "project_id": "relay-platform-001",
+      "title": "01 — Follow one record",
+      "topics": [
+        "software-engineering"
+      ],
+      "connection_to_code": "Source links and evidence references within the material",
+      "stage": "guided"
+    },
+    {
+      "material_id": "relay-lab-02",
+      "path": "upskilling/labs/02-tenancy.md",
+      "type": "exercise",
+      "difficulty": "intermediate",
+      "prerequisites": [
+        "relay-lab-03"
+      ],
+      "assessment": "Prediction, observed evidence, independent explanation",
+      "completion": "not_assessed",
+      "project_id": "relay-platform-001",
+      "title": "02 — An ID is not permission",
+      "topics": [
+        "software-engineering"
+      ],
+      "connection_to_code": "Source links and evidence references within the material",
+      "stage": "guided"
+    },
+    {
+      "material_id": "relay-lab-03",
+      "path": "upskilling/labs/03-validation.md",
+      "type": "exercise",
+      "difficulty": "intermediate",
+      "prerequisites": [
+        "relay-lab-01"
+      ],
+      "assessment": "Prediction, observed evidence, independent explanation",
+      "completion": "not_assessed",
+      "project_id": "relay-platform-001",
+      "title": "03 — Make ambiguity visible",
+      "topics": [
+        "software-engineering"
+      ],
+      "connection_to_code": "Source links and evidence references within the material",
+      "stage": "guided"
+    },
+    {
+      "material_id": "relay-lab-04",
+      "path": "upskilling/labs/04-recovery.md",
+      "type": "exercise",
+      "difficulty": "advanced",
+      "prerequisites": [
+        "relay-assessment",
+        "relay-lab-05"
+      ],
+      "assessment": "Prediction, observed evidence, independent explanation",
+      "completion": "not_assessed",
+      "project_id": "relay-platform-001",
+      "title": "04 — Crash the worker, keep the promise",
+      "topics": [
+        "software-engineering"
+      ],
+      "connection_to_code": "Source links and evidence references within the material",
+      "stage": "reliability"
+    },
+    {
+      "material_id": "relay-lab-05",
+      "path": "upskilling/labs/05-approval.md",
+      "type": "exercise",
+      "difficulty": "advanced",
+      "prerequisites": [
+        "relay-lab-02"
+      ],
+      "assessment": "Prediction, observed evidence, independent explanation",
+      "completion": "not_assessed",
+      "project_id": "relay-platform-001",
+      "title": "05 — Review a version, reconcile current state",
+      "topics": [
+        "software-engineering"
+      ],
+      "connection_to_code": "Source links and evidence references within the material",
+      "stage": "independent"
+    },
+    {
+      "material_id": "relay-lab-06",
+      "path": "upskilling/labs/06-fresh-session.md",
+      "type": "exercise",
+      "difficulty": "advanced",
+      "prerequisites": [
+        "relay-assessment"
+      ],
+      "assessment": "Prediction, observed evidence, independent explanation",
+      "completion": "not_assessed",
+      "project_id": "relay-platform-001",
+      "title": "06 — Recover the engineering context",
+      "topics": [
+        "software-engineering"
+      ],
+      "connection_to_code": "Source links and evidence references within the material",
+      "stage": "independent"
+    },
+    {
+      "material_id": "relay-runbook",
+      "path": "upskilling/RUNBOOK.md",
+      "type": "runbook",
+      "topics": [
+        "operations",
+        "recovery"
+      ],
+      "status": "authored",
+      "project_id": "relay-platform-001",
+      "title": "Operate and recover Relay",
+      "connection_to_code": "Source links and evidence references within the material",
+      "prerequisites": []
+    },
+    {
+      "material_id": "relay-architecture",
+      "path": "upskilling/ARCHITECTURE.md",
+      "type": "architecture-guide",
+      "topics": [
+        "transactions",
+        "idempotency",
+        "approval",
+        "tenancy"
+      ],
+      "status": "source-grounded",
+      "project_id": "relay-platform-001",
+      "title": "Relay architecture",
+      "connection_to_code": "Source links and evidence references within the material",
+      "prerequisites": []
+    },
+    {
+      "material_id": "relay-lab-07",
+      "project_id": "relay-platform-001",
+      "path": "upskilling/labs/07-ai-mapping.md",
+      "title": "AI mapping: measure mistakes before trusting proposals",
+      "type": "exercise",
+      "topics": [
+        "structured output",
+        "embeddings",
+        "evaluation",
+        "abstention",
+        "human approval"
+      ],
+      "difficulty": "advanced",
+      "estimated_depth": 90,
+      "connection_to_code": "Referenced implementation paths and executed evidence in each lab",
+      "prerequisites": [
+        "relay-lab-09"
+      ],
+      "recommended_before": [],
+      "recommended_after": [
+        "relay-lab-03"
+      ],
+      "related_material": [],
+      "assessment": "Prediction, observed evidence, independent explanation and a counterexample",
+      "completion": "not_assessed",
+      "notes": "Authored exercise; learner execution not observed.",
+      "stage": "elective_after_reliability"
+    },
+    {
+      "material_id": "relay-lab-08",
+      "project_id": "relay-platform-001",
+      "path": "upskilling/labs/08-external-delivery.md",
+      "title": "External delivery: a timeout is not a failed write",
+      "type": "exercise",
+      "topics": [
+        "idempotency",
+        "outbox",
+        "reconciliation",
+        "rate limits",
+        "cancellation"
+      ],
+      "difficulty": "advanced",
+      "estimated_depth": 90,
+      "connection_to_code": "Referenced implementation paths and executed evidence in each lab",
+      "prerequisites": [
+        "relay-lab-04",
+        "relay-lab-09"
+      ],
+      "recommended_before": [],
+      "recommended_after": [
+        "relay-lab-04"
+      ],
+      "related_material": [],
+      "assessment": "Prediction, observed evidence, independent explanation and a counterexample",
+      "completion": "not_assessed",
+      "notes": "Authored exercise; learner execution not observed.",
+      "stage": "elective_after_reliability"
+    },
+    {
+      "material_id": "relay-lab-09",
+      "project_id": "relay-platform-001",
+      "path": "upskilling/labs/09-operations.md",
+      "title": "Operate the pipeline and test its limits",
+      "type": "exercise",
+      "topics": [
+        "fairness",
+        "observability",
+        "performance",
+        "backup restore",
+        "deployment compatibility"
+      ],
+      "difficulty": "advanced",
+      "estimated_depth": 90,
+      "connection_to_code": "Referenced implementation paths and executed evidence in each lab",
+      "prerequisites": [
+        "relay-lab-04"
+      ],
+      "recommended_before": [],
+      "recommended_after": [
+        "relay-lab-08"
+      ],
+      "related_material": [],
+      "assessment": "Prediction, observed evidence, independent explanation and a counterexample",
+      "completion": "not_assessed",
+      "notes": "Authored exercise; learner execution not observed.",
+      "stage": "reliability"
+    },
+    {
+      "material_id": "relay-lab-10",
+      "project_id": "relay-platform-001",
+      "path": "upskilling/labs/10-handover.md",
+      "title": "Have someone else operate and diagnose Relay",
+      "type": "exercise",
+      "topics": [
+        "handover",
+        "independent review",
+        "runbooks",
+        "communication"
+      ],
+      "difficulty": "advanced",
+      "estimated_depth": 90,
+      "connection_to_code": "Referenced implementation paths and executed evidence in each lab",
+      "prerequisites": [
+        "relay-lab-09",
+        "relay-lab-06"
+      ],
+      "recommended_before": [],
+      "recommended_after": [
+        "relay-lab-09"
+      ],
+      "related_material": [],
+      "assessment": "Prediction, observed evidence, independent explanation and a counterexample",
+      "completion": "not_assessed",
+      "notes": "Authored exercise; learner execution not observed.",
+      "stage": "judgment"
+    },
+    {
+      "material_id": "relay-lab-11",
+      "project_id": "relay-platform-001",
+      "path": "upskilling/labs/11-schema-excel.md",
+      "title": "Evolve contracts without changing old imports",
+      "type": "exercise",
+      "topics": [
+        "versioned contracts",
+        "Excel",
+        "streaming",
+        "reproducibility"
+      ],
+      "difficulty": "advanced",
+      "estimated_depth": 90,
+      "connection_to_code": "Referenced implementation paths and executed evidence in each lab",
+      "prerequisites": [
+        "relay-assessment"
+      ],
+      "recommended_before": [],
+      "recommended_after": [
+        "relay-lab-03"
+      ],
+      "related_material": [],
+      "assessment": "Prediction, observed evidence, independent explanation and a counterexample",
+      "completion": "not_assessed",
+      "notes": "Authored exercise; learner execution not observed.",
+      "stage": "reliability"
+    },
+    {
+      "material_id": "relay-lab-12",
+      "project_id": "relay-platform-001",
+      "path": "upskilling/labs/12-frontend.md",
+      "title": "Keep a large import usable and accessible",
+      "type": "exercise",
+      "topics": [
+        "React",
+        "forms",
+        "accessibility",
+        "pagination",
+        "frontend performance"
+      ],
+      "difficulty": "advanced",
+      "estimated_depth": 90,
+      "connection_to_code": "Referenced implementation paths and executed evidence in each lab",
+      "prerequisites": [
+        "relay-lab-03"
+      ],
+      "recommended_before": [],
+      "recommended_after": [
+        "relay-lab-03"
+      ],
+      "related_material": [],
+      "assessment": "Prediction, observed evidence, independent explanation and a counterexample",
+      "completion": "not_assessed",
+      "notes": "Authored exercise; learner execution not observed.",
+      "stage": "guided"
+    },
+    {
+      "material_id": "relay-start",
+      "project_id": "relay-platform-001",
+      "path": "upskilling/FIRST_SESSION.md",
+      "title": "First session: one function",
+      "type": "onboarding",
+      "topics": [
+        "TypeScript",
+        "functions",
+        "testing",
+        "diagnostic"
+      ],
+      "prerequisites": [],
+      "difficulty": "beginner",
+      "completion": "not_assessed",
+      "connection_to_code": "Runnable practice or bounded source references within the material",
+      "stage": "foundations"
+    },
+    {
+      "material_id": "relay-foundations",
+      "project_id": "relay-platform-001",
+      "path": "upskilling/FOUNDATIONS.md",
+      "title": "Foundations before the platform",
+      "type": "tutorial",
+      "topics": [
+        "TypeScript",
+        "debugging",
+        "Git",
+        "HTTP",
+        "async",
+        "SQL",
+        "C#",
+        "React"
+      ],
+      "prerequisites": [
+        "relay-start"
+      ],
+      "difficulty": "beginner",
+      "completion": "not_assessed",
+      "connection_to_code": "Runnable practice or bounded source references within the material",
+      "stage": "foundations"
+    },
+    {
+      "material_id": "relay-assessment",
+      "project_id": "relay-platform-001",
+      "path": "upskilling/ASSESSMENT.md",
+      "title": "Demonstrate independent ownership",
+      "type": "exercise",
+      "topics": [
+        "CRUD",
+        "API design",
+        "testing",
+        "communication",
+        "assessment"
+      ],
+      "prerequisites": [
+        "relay-lab-02",
+        "relay-lab-12"
+      ],
+      "difficulty": "intermediate",
+      "completion": "not_assessed",
+      "connection_to_code": "Runnable practice or bounded source references within the material",
+      "stage": "independent"
+    },
+    {
+      "material_id": "relay-coaching",
+      "project_id": "relay-platform-001",
+      "path": "upskilling/BUILD_PROMPT.md",
+      "title": "Learning-session coaching contract",
+      "type": "other",
+      "topics": [
+        "coaching",
+        "assistance",
+        "reflection"
+      ],
+      "prerequisites": [],
+      "difficulty": "beginner",
+      "completion": "not_assessed",
+      "connection_to_code": "Runnable practice or bounded source references within the material"
+    },
+    {
+      "material_id": "relay-learning-review",
+      "project_id": "relay-platform-001",
+      "path": "upskilling/REVIEW.md",
+      "title": "Learning curriculum review",
+      "type": "other",
+      "topics": [
+        "curriculum design",
+        "evidence"
+      ],
+      "prerequisites": [],
+      "difficulty": "beginner",
+      "completion": "not_assessed",
+      "connection_to_code": "Runnable practice or bounded source references within the material"
+    }
+  ]
+}

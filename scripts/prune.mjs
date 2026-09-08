@@ -1,0 +1,3 @@
+import pg from 'pg';
+const p=new pg.Pool({connectionString:process.env.DATABASE_URL});
+try{const c=await p.connect();try{await c.query('BEGIN');for(const [table,where] of [['sessions','expires_at<now()'],['account_tokens',"expires_at<now()-interval '30 days'"],['login_attempts',"window_start<now()-interval '1 day'"],['worker_heartbeats',"last_seen<now()-interval '1 day'"],['batch_metrics',"created_at<now()-interval '30 days'"]]){const r=await c.query('DELETE FROM '+table+' WHERE '+where);console.log(table+': '+r.rowCount+' expired records removed');}await c.query('COMMIT');}catch(e){await c.query('ROLLBACK');throw e;}finally{c.release();}}finally{await p.end();}
