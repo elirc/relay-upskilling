@@ -4,7 +4,7 @@ Relay is a learning-first customer data import platform built with Next.js/TypeS
 Upload CSV or Excel, review column mappings and cleanup rules, correct validation errors, approve a specific version, and follow a resumable import into local contacts or an external test API. Original files remain separate from staged rows and destination records.
 
 ## Start learning
-Your current goal is novice/junior-to-independent engineering practice. Start with [one small function](upskilling/FIRST_SESSION.md), then follow the [skills roadmap](upskilling/ROADMAP.md). The first exercises need only Node; the full platform is a later learning resource.
+Your current goal is novice/junior-to-independent engineering practice. Start with [one small function](upskilling/FIRST_SESSION.md), then follow the [skills roadmap](upskilling/ROADMAP.md). The first exercises need only Node; the full platform is a later learning resource. Experienced engineers who want the senior-end material — a cross-language trace of the resumable import path and boundary-moving exercises — should start at [upskilling/course/LEARNING-PATH.md](upskilling/course/LEARNING-PATH.md).
 
 ## Run locally
 Requires Node.js 24+, .NET 10, and PostgreSQL 18. This workspace also includes project-local tooling under ignored `.tools/` and `.cache/` directories.
