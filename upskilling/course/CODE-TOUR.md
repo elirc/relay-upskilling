@@ -123,7 +123,7 @@ Because effects and checkpoint commit together, the two crash windows are
 symmetric and both rehearsed with a real process exit:
 
 - **Before commit** (exit 74, `ImportWorker.cs:265`): everything rolls back;
-  the batch reruns identically. Pinned by `scripts/advanced-e2e.mjs:136` —
+  the batch reruns identically. Pinned by `scripts/advanced-e2e.mjs:36` —
   checkpoint 100, exactly 100 contacts, then completion.
 - **After commit** (exit 73, `ImportWorker.cs:268`): the committed prefix is
   permanent; the next worker starts at the checkpoint. Pinned by
@@ -171,20 +171,20 @@ transaction exists. Watch the order:
    pending."` (`ExternalDelivery.cs:91`).
 
 The rehearsal that pins the whole window is
-`scripts/advanced-e2e.mjs:138`: the fault `lose-response-once` makes the
+`scripts/advanced-e2e.mjs:38`: the fault `lose-response-once` makes the
 destination commit seven contacts then destroy the socket
 (`test-destination.mjs:44-47` — note the destroy happens **after** `COMMIT`);
 the worker, started with `Relay__CrashOnUncertain=true`, exits 75
 (`ExternalDelivery.cs:109`) with checkpoint 0 and seven `uncertain` outbox
 rows while the destination already holds seven contacts. A fresh worker then
 completes the job to `delivered=7, imported=7` with exactly seven receipts —
-by lookup, not by resend. `scripts/advanced-e2e.mjs:140-147` additionally
+by lookup, not by resend. `scripts/advanced-e2e.mjs:40-47` additionally
 replays a key directly (same outcome back), changes its payload (409), and
 proves another tenant cannot read the receipt.
 
 Failure modes of the destination are typed, not guessed:
 429 becomes a `Throttled` exception carrying `Retry-After`
-(`ExternalDelivery.cs:22,26`), rehearsed at `scripts/advanced-e2e.mjs:137`;
+(`ExternalDelivery.cs:22,26`), rehearsed at `scripts/advanced-e2e.mjs:37`;
 any other error marks the batch uncertain and backs off
 (`ExternalDelivery.cs:96-108`); an invalid or unknown receipt is rejected
 outright (`ExternalDelivery.cs:112-119`). Five failed attempts stop the job
@@ -206,7 +206,7 @@ Putting the two halves together, the honest status vocabulary is:
   reconciliation (`route.ts:162-167`, `ImportWorker.cs:58` including
   paused/cancelled jobs with uncertain outbox rows) later converts
   uncertainty into outcomes without resuming the import — pinned by
-  `scripts/advanced-e2e.mjs:148-149`.
+  `scripts/advanced-e2e.mjs:48-49`.
 
 ## 8. Where the promise stops
 

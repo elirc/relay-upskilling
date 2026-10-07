@@ -79,7 +79,7 @@ constraint absorbs the replay but cannot notice the content is wrong.
 authorizations but never lies about in-flight ones"**: `route.ts:167-171` →
 the status re-check inside `ExternalDelivery.cs:61-66` → the
 paused/cancelled arm of the scheduler query (`ImportWorker.cs:57-59`) →
-`scripts/advanced-e2e.mjs:148-149`.
+`scripts/advanced-e2e.mjs:48-49`.
 *Done when:* your tour names the one transaction that serializes the
 permission-to-send decision with pause, and where its guarantee ends.
 
@@ -169,7 +169,7 @@ org collide?), and `account_tokens` reuse across orgs.
 *Done when:* every attempt is asserted to fail with 403/404/empty — and each
 *gap you find* is reported as a finding with a concrete reproduction, not
 silently fixed; the existing partial evidence (`scripts/e2e.mjs:53-56`,
-`scripts/advanced-e2e.mjs:144`) becomes a subset of your suite.
+`scripts/advanced-e2e.mjs:44`) becomes a subset of your suite.
 
 ---
 

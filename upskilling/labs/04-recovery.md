@@ -20,3 +20,17 @@ Bounded experiment: change batch size from 500 to 100 and 2,000. Measure elapsed
 Explain: why is checkpoint-before-effects unsafe? Why is effects-before-checkpoint unsafe without a shared transaction? Why does local transactional idempotency not solve a remote destination’s uncertain outcome?
 
 Assess: make a precise invariant assertion: committed ledger rows, checkpoint, total rows and unique destination emails. Explain why imported count alone is insufficient.
+
+## Code anchors (verified against this repository)
+
+- `worker/ImportWorker.cs:220-269` — `Commit`: one transaction locks the job (`Load(..., locked: true)`, `:225`), re-checks the approval fingerprint (`:227-228`), inserts the batch into `contacts` with `ON CONFLICT (org_id,email) DO NOTHING` (`:232-241`), classifies `existing`/`conflict` (`:247-253`), marks rows committed (`:254-259`) and advances `commit_checkpoint` **in the same transaction** (`:262`).
+- Crash rehearsals: exit 74 *before* `CommitAsync` (`:265`), exit 73 *after* it (`:268`).
+- Batch size: `Relay:BatchSize`, default 500, clamped to 1–2000 (`:13`).
+- Two workers: per-tenant and per-job `pg_try_advisory_lock` (`:70-71`), released at `:109-110`.
+- Rehearsals: `scripts/advanced-e2e.mjs:36` (before-commit), `scripts/e2e.mjs:82-96` (100k run with the after-commit crash).
+
+## Checks
+
+**Goal:** state the invariant precisely. **Check:** after any crash-and-restart, `commit_checkpoint` equals the number of rows with `committed = true` for that job, and the count of `contacts` whose `source_job_id` is the job is never larger than the number of rows with disposition `imported`.
+
+**Goal:** see why the advisory lock is session-scoped. **Check:** you can explain why `pg_try_advisory_lock` (not `pg_advisory_xact_lock`) is used — the lock must outlive the per-batch transactions in `Commit` — and what happens to it when the worker process dies (the session ends, so Postgres releases it).

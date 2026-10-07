@@ -17,3 +17,16 @@ Predict the local checkpoint, remote contact count and outbox states when a dest
 Pass when your explanation accounts for every side of the commit/response-loss window, distinguishes attempted delivery from confirmed effects, and explains the limits of idempotency. Include a timeline, a SQL outcome count and one counterexample to naive retry.
 
 Stretch: add a bounded circuit-breaker experiment and compare recovery latency against the current five-attempt policy without dropping uncertain outcomes.
+
+## Code anchors (verified against this repository)
+
+- `worker/ExternalDelivery.cs:22`, `:26` — HTTP 429 becomes a typed `Throttled` exception carrying `Retry-After`.
+- `:91` — progress, status and back-off are written together; `:96-108` — any other error marks the batch uncertain and backs off.
+- `:109` — with `Relay:CrashOnUncertain=true` the worker exits 75 after an uncertain outcome (rehearsal hook).
+- `:112-119` — receipts are read strictly; unknown or invalid receipts are rejected.
+- Scheduler arm that keeps reconciling paused/cancelled jobs with uncertain outbox rows: `worker/ImportWorker.cs:57-58`.
+- Rehearsals: `scripts/advanced-e2e.mjs:37` (throttle), `:38` (lost response), `:42-44` (key replay, changed payload → 409, cross-tenant receipt lookup returns nothing), `:48-49` (cancel while uncertain).
+
+## Checks
+
+**Goal:** observe "uncertain", not "failed". **Check:** with the `lose-response-once` fault armed, the job's `delivery_counts` shows `uncertain` rows while the destination already holds the contacts; after a fresh worker runs, `delivered` equals the row count and the destination still holds exactly that many contacts.
